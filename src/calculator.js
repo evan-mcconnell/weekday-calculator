@@ -45,10 +45,10 @@ export class userDate {
 
 export function dayConvert(date) {
   const dateArray = date.split("/");
-  const inputDate = new userDate (dateArray[0], dateArray[1], dateArray[2]);
+  const inputDate = new userDate (parseInt(dateArray[0]), parseInt(dateArray[1]), parseInt(dateArray[2]));
   console.log(inputDate);
-  console.log(inputDate.checkArgs());
-  if (inputDate.checkArgs() === "true") {
+  console.log(inputDate.checkMin());
+  if (inputDate.checkMin() === "input non-zero") {
     const dayOfWeek = inputDate.getDay();
     return dayOfWeek;
   } else {
