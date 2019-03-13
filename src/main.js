@@ -1,12 +1,14 @@
-// import $ from 'jquery';
+  import $ from 'jquery';
   import 'bootstrap';
   import 'bootstrap/dist/css/bootstrap.min.css';
+  import { userDate, dayConvert } from './../src/calculator.js';
 
-  function scopeCheck() {
-  let x = 5;
-  if (x > 1) {
-    x = 6;
-  }
-  console.log(x);
-  }
-  scopeCheck();
+
+$(document).ready( function() {
+  $(".date").submit(function(event) {
+    event.preventDefault();
+    const newDate = $('#date-input').val();
+    const output = dayConvert(newDate);
+    $(".output").text(output);
+  });
+});
