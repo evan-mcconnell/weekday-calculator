@@ -8,7 +8,7 @@ export class userDate {
   }
 
    checkArgs() {
-    if ((typeof this.month === "number") && (typeof this.date === "number") && (typeof this.year === "number")) {
+    if ((isNaN(this.month) === false) && (isNaN(this.date) === false) && (isNaN(this.year) === false)) {
       return "true";
     } else {
       return "false";
@@ -23,7 +23,7 @@ export class userDate {
 
   checkMaxDays() {
     if (this.date > 31) {
-      return "date exceeds 31";
+      return 'date exceeds 31';
     }
   }
 
@@ -48,10 +48,23 @@ export function dayConvert(date) {
   const inputDate = new userDate (parseInt(dateArray[0]), parseInt(dateArray[1]), parseInt(dateArray[2]));
   console.log(inputDate);
   console.log(inputDate.checkMin());
-  if (inputDate.checkMin() === "input non-zero") {
-    const dayOfWeek = inputDate.getDay();
-    return dayOfWeek;
+  console.log(inputDate.checkArgs());
+  if (inputDate.checkArgs() === "true") {
+    if (inputDate.checkMin() === "input non-zero") {
+      if (inputDate.checkMaxMonths() !== 'month exceeds 12'){
+        if (inputDate.checkMaxDays() !== 'date exceeds 31') {
+          const dayOfWeek = inputDate.getDay();
+          return dayOfWeek;
+        } else {
+          alert ("Something went wrong. Please enter a valid day of the month!")
+        }
+      } else {
+        alert("Something went wrong. Please enter a valid month!");
+      }
+    } else {
+      alert("Something went wrong. Please make sure you entered a date in MM/DD/YYYY format!");
+    }
   } else {
-    alert("Something went wrong. Please make sure you entered a date in MM/DD/YYYY format!");
+    alert("Something went wrong. Please make sure you entered only numbers!");
   }
 }
