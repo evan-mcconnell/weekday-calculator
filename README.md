@@ -1,4 +1,4 @@
-##Date Calculator Specs##
+## Date Calculator Specs
 
 * Make sure the user enters a three arguments *done*
 
